@@ -12,7 +12,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from stockpilot.models import Base
+from stockpilot.migrations import migrate_database
 
 load_dotenv()
 
@@ -32,7 +32,7 @@ def create_database_engine(url: str | None = None) -> Engine:
     resolved_url = url or database_url()
     connect_args = {"check_same_thread": False} if resolved_url.startswith("sqlite:") else {}
     engine = create_engine(resolved_url, connect_args=connect_args)
-    Base.metadata.create_all(engine)
+    migrate_database(engine)
     return engine
 
 
