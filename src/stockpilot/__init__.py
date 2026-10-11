@@ -1,0 +1,1 @@
+"""StockPilot warehouse inventory CLI."""

@@ -1,0 +1,10 @@
+services:
+  stock:
+    build: .
+    environment:
+      STOCKPILOT_DATABASE_URL: sqlite:////app/data/stockpilot.db
+    volumes:
+      - stockpilot-data:/app/data
+
+volumes:
+  stockpilot-data:
